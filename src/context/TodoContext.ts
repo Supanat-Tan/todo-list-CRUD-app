@@ -1,13 +1,5 @@
 import { createContext } from "react";
+import type { ToDoContextType } from "../types/type"
 
-export interface ToDo {
-  _id: string;
-  todo: string;
-}
-
-export interface ToDoContextType {
-  toDos: ToDo[];
-  setToDos: React.Dispatch<React.SetStateAction<ToDo[]>>;
-}
 
 export const ToDoContext = createContext<ToDoContextType | null>(null);

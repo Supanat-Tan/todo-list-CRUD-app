@@ -1,0 +1,26 @@
+:root {
+    --background: #000000;
+    --foreground: #222222;
+    --accent: #1DCD9F;
+    --text: #169976
+}
+
+body {
+    background-color: black;
+}
+
+#root > button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+
+    padding: 20px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: var(--accent);
+
+    font-size: 2rem;
+    color: white;
+}

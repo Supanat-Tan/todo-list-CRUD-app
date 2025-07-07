@@ -1,0 +1,21 @@
+.sorter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
+.sorter > * {
+    flex: 1;
+    
+    height: 50px;
+    padding: 0;
+    
+    border: none;
+    background-color: var(--accent);
+
+    color: black;
+    font-size: 1.5rem;
+}

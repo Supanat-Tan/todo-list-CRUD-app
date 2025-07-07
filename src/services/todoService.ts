@@ -1,9 +1,17 @@
-export const apiCall = async (type: string, payload?: any) => {
+export const apiCall = async (type: string, payload?: object) => {
     let response
 
     switch (type) {
-        case "getAllTodo":
+        case "get-all-todo":
             response = await fetch('/api/todo/findall');
+            break;
+
+        case "create-todo":
+            response = await fetch('/api/todo/create', payload)
+            break;
+
+        case "delete-todo":
+            response = await fetch('/api/todo/delete/'+ payload)
             break;
 
         default:

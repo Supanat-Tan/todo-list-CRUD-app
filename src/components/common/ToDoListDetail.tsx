@@ -1,28 +1,20 @@
-import type { ToDo } from "../pages/Homepage";
+import type { ToDoListDetailProps } from "../../types/type";
 import { useToDoContext } from "../../hooks/useTodoContext"
 
-interface ToDoListDetailProps {
-  data: ToDo;
-}
-
-
-
+import "../../styles/todoDetail.css"
 
 const ToDoListDetail = ({ data }: ToDoListDetailProps) => {
 
-  const { toDos, setToDos } = useToDoContext();
+  const { dispatch } = useToDoContext();
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch('/api/todo/delete/' + id, {
+      const json = await fetch(`/api/todo/delete/${id}`, {
         method: "DELETE",
       })
 
-      const json = await response.json();
-
-      if (response.ok) {
-        const newToDos = toDos.filter((t) => t._id !== id);
-        setToDos(newToDos);
+      if (json) {
+        dispatch({ type: "DELETE_TODO", payload: id})
       }
     }
     catch(err) {
@@ -32,11 +24,11 @@ const ToDoListDetail = ({ data }: ToDoListDetailProps) => {
 
   return (
     <div>
+      <div>{data.todo}</div>
+      <div>{new Date(data.date).toLocaleDateString()}</div>
       <div>
-        <div>{data.todo}</div>
-        <div>{data._id}</div>
+        <button onClick={() => handleDelete(data._id)}>-</button>
       </div>
-      <button onClick={() => handleDelete(data._id)}>Delete</button>
     </div>
       
   )

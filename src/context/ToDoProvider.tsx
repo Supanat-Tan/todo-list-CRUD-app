@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import { ToDoContext, type ToDo } from "./TodoContext";
+import React, { useReducer } from "react";
+import { ToDoContext } from "./TodoContext";
+import { todoReducer } from "../reducers/todoReducer";
+
+const initialState = { 
+  toDos: [],
+};
 
 export const ToDoProvider = ({ children }: { children: React.ReactNode }) => {
-  const [toDos, setToDos] = useState<ToDo[]>([]);
+  const [state, dispatch] = useReducer(todoReducer, initialState)
 
   return (
-    <ToDoContext.Provider value={{ toDos, setToDos }}>
+    <ToDoContext.Provider value={{ ...state, dispatch }}>
       {children}
     </ToDoContext.Provider>
   );

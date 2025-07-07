@@ -1,0 +1,76 @@
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+
+    width: 500px;
+    height: auto;
+    padding: 20px;
+
+    border-radius: 50px;
+    background-color: var(--foreground);
+
+    transition: all 0.3s ease-out;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-form > div > div > label {
+    padding: 10px;
+
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.todo-form > div > div > input {
+    height: 30px;
+    padding: 10px;
+
+    border: none;
+    border-radius: 15px;
+}
+
+.todo-form > button {
+    height: 50px;
+    width: 100px;
+
+    background-color: var(--accent);
+    border: none;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.todo-form.show {
+    transform: translate(-50%, -50%);
+}
+
+.todo-form.hide {
+    transform: translate(-50%, 500%);
+}
+
+.notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 400px;
+    height: 50px;
+
+    color: var(--text);
+    font-size: 1rem;
+}

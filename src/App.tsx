@@ -1,18 +1,24 @@
 import RootLayout from './components/layouts/RootLayout'
 import Homepage from './components/pages/Homepage'
 import Loginpage from './components/pages/Loginpage'
-import { Routes, Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { todoLoader } from './loaders/todoLoader';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Homepage />, loader: todoLoader, },
+      { path: "login", element: <Loginpage /> }
+    ],
+  },
+],
+);
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={ <RootLayout /> }>
-          <Route index element={ <Homepage /> }/>
-          <Route path='/login' element={ <Loginpage /> }/>
-        </Route>
-      </Routes>
-    </>
+      <RouterProvider router={router} />
   )
 }
 
