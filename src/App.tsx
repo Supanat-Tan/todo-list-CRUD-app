@@ -10,9 +10,12 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Homepage />, loader: todoLoader, },
-      { path: "login", element: <Loginpage /> }
     ],
   },
+  {
+    path: "login",
+    element: <Loginpage />
+  }
 ],
 );
 

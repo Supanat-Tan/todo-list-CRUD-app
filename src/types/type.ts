@@ -1,9 +1,9 @@
 import type React from "react"
 
 export interface ToDo {
-    _id: string,
-    todo: string,
-    date: string,
+    _id: string;
+    todo: string;
+    date: string;
 }
 
 export interface ToDoListFormProps {
@@ -14,7 +14,7 @@ export type Action =
     | { type: "SET_TODOS"; payload: ToDo[] }
     | { type: "ADD_TODO"; payload: ToDo }
     | { type: "DELETE_TODO"; payload: string }
-    | { type: "SET_LOADING"; payload: boolean };
+    | { type: "SET_LOADING"; payload: boolean }
 
 
 export interface ToDoContextType {
@@ -27,3 +27,21 @@ export interface ToDoListDetailProps {
   data: ToDo;
 }
 
+export interface User {
+  _id: string | null;
+  email: string | null;
+  username: string | null;
+}
+
+export interface AuthState {
+  user: User | null;
+}
+
+export type AuthAction =
+  | { type: "LOGIN"; payload: User }
+  | { type: "LOGOUT";}
+
+export interface AuthContextType {
+  user: User | null;
+  dispatch: React.Dispatch<AuthAction>;
+}

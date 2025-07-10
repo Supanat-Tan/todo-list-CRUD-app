@@ -40,8 +40,8 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    if (todoFromLoader.error) {
-      setError(todoFromLoader.statusText);
+    if ('error' in todoFromLoader) {
+      setError(todoFromLoader.error);
       return;
     }
 
@@ -54,18 +54,20 @@ const Homepage = () => {
     <div className="main-container">
 
       <div className="detail-container">
+
         <div className="sorter">
           <button onClick={() => handleSort("name")}>Name</button>
           <button onClick={() => handleSort("date")}>Date</button>
           <button></button>
         </div>
+
         {toDos.map((todo) => <ToDoListDetail 
         key={todo._id} 
         data={todo}
         />)}
-      </div>
 
-      {error? <div>Error fetching Data from database: {error}</div> : ""}
+        {error? <div>Error fetching Data from database: {error}</div> : ""}
+      </div>
 
     </div>
   )
