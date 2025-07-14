@@ -4,11 +4,12 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-
-    z-index: 1;
+    
+    z-index: 10;
 
     height: 100%;
-    padding: 50px;
+    padding: 30px;
+    margin-top: 10px;
 
     border-radius: 50px;
     background-color: var(--foreground);
@@ -16,26 +17,36 @@
 
 .detail-container > div:not(.sorter) {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
     width: 100%;
+
+    border-radius: 20px;
+
+    transition: all 0.3s ease;
 }
 
 .detail-container > div > div {
-    flex: 1;
     display: flex;
     justify-content: center;
 
-    width: 200px;
+    width: 100%;
     padding: 10px 0px 10px 5px;
 
     color: var(--text);
     font-size: 1.2rem;
 }
 
-.detail-container > div:not(.sorter) > div > button {
+.detail-container > div > div > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-container > div:not(.sorter) > div > div > button {
     width: 30px;
     height: 100%;
 
@@ -46,4 +57,67 @@
     font-size: 1.2rem;
 
     cursor: pointer;
+}
+
+/* Hover Effect */
+.detail-container > div:not(.sorter):hover {
+    background-color: #1d1d1d;
+}
+
+
+/* Update form */
+.update-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
+.update-form > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 24px;
+}
+
+.update-form > div > label {
+    margin-right: 10px;
+
+    color: var(--text);
+}
+
+.update-form > div > input {
+    padding: 10px;
+
+    background-color: var(--background);
+    border: none;
+    border-radius: 20px;
+
+    color: var(--text);
+}
+
+.update-form.show {
+    display: flex;
+
+    height: 50px;
+}
+
+.update-form.hide {
+    display: none;
+}
+
+
+/* Update button */
+.update-form > div > button {
+    height: 100%;
+    
+    border: none;
+    background-color: var(--accent);
+
+    color: var(--background);
+    font-weight: bold;
 }

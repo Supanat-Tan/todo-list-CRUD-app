@@ -6,7 +6,7 @@ export const useLogOut = () => {
     const { dispatch } = useAuthContext();
     const { dispatch: todoDispatch } = useToDoContext();
     
-    const logout = () => {
+    const logout = async () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 

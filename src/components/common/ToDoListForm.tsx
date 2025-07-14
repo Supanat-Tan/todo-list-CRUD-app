@@ -2,11 +2,12 @@ import { useState, type FormEvent } from "react";
 import { useToDoContext } from "../../hooks/useTodoContext";
 import { apiCall } from "../../services/todoService";
 import type { ToDoListFormProps } from "../../types/type";
-
 import "../../styles/form.css"
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const ToDoListForm = ({ isVisible }: ToDoListFormProps) => {
   const { dispatch } = useToDoContext();
+  const { user } = useAuthContext();
 
   const [notice, setNotice] = useState("")
 
@@ -14,6 +15,7 @@ const ToDoListForm = ({ isVisible }: ToDoListFormProps) => {
   const [formData, setFormData] = useState({
     todo: "",
     date: "",
+    user: user?._id,
   });
 
   const handleNotice = () => {
@@ -39,23 +41,23 @@ const ToDoListForm = ({ isVisible }: ToDoListFormProps) => {
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      console.log(formData);
-  
-      const json = await apiCall('create-todo', {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json"
-        },
-      });
-  
-      if (json) {
-        dispatch({ type: "ADD_TODO", payload: json})
-        handleNotice();
-      }
+    const user = localStorage.getItem("user")
+
+    if (!user) {
+      console.error("Not currently login")
     }
+
+    console.log(formData)
+  
+    const json = await apiCall('create-todo', formData);
+  
+    if (json) {
+      dispatch({ type: "ADD_TODO", payload: json})
+      handleNotice();
+    }
+  }
   
   return (
     <form className={`todo-form ${isVisible? "show" : "hide "}`} onSubmit={handleSubmit}>

@@ -66,7 +66,7 @@ const Homepage = () => {
         data={todo}
         />)}
 
-        {error? <div>Error fetching Data from database: {error}</div> : ""}
+        {error? <div className="error">Error fetching Data from database: {error}</div> : ""}
       </div>
 
     </div>

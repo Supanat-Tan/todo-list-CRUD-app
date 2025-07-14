@@ -12,6 +12,13 @@ export const todoReducer = (state: { toDos: ToDo[] }, action: Action) => {
         toDos: [...state.toDos, action.payload]
       }
 
+    case "UPDATE_TODO":
+      return {
+        ...state,
+        toDos: state.toDos.map(todo => todo._id === action.payload._id? 
+          { ...todo, ...action.payload } : todo),
+      }
+
     case "DELETE_TODO":
       return {
         ...state,

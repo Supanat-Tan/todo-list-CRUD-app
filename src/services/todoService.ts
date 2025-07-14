@@ -1,11 +1,11 @@
-export const apiCall = async (type: string, payload?: object) => {
+export const apiCall = async (type: string, payload?: string | object, addtion?: string) => {
     let response
 
     const token = localStorage.getItem("token");
 
     switch (type) {
         case "get-all-todo":
-            response = await fetch('/api/todo', {
+            response = await fetch(`/api/todo/${payload}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -23,10 +23,22 @@ export const apiCall = async (type: string, payload?: object) => {
             })
             break;
 
+        case "update-todo":
+            response = await fetch(`api/todo/${addtion}`, {
+                method: "PATCH",
+                body: JSON.stringify(payload),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            break;
+
         case "delete-todo":
             response = await fetch(`/api/todo/${payload}`, {
                 method: "DELETE",
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
             })

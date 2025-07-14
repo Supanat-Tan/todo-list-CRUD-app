@@ -2,11 +2,11 @@ import React, { useState, type FormEvent} from "react"
 
 import "../../styles/loginform.css"
 import { apiCall } from "../../services/todoService";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
+
 
 const Loginpage = () => {
-  const { dispatch } = useAuthContext()
 
   const navigate = useNavigate()
 
@@ -14,8 +14,9 @@ const Loginpage = () => {
   const [formData, setFormData] = useState({
     email: "",
     username: "",
-    password: ""
+    password: "",
   });
+  const { login } = useLogin();
 
   const handleToggleLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -39,9 +40,7 @@ const Loginpage = () => {
       });
 
         if (response) {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("user", JSON.stringify(response.user));
-          dispatch({ type: "LOGIN", payload: response.user});
+          await login(response);
           navigate('/');
         }
       } catch(err) {
@@ -60,26 +59,34 @@ const Loginpage = () => {
     <div className="main-login-container">
 
       <form className="form-container" onSubmit={handleSubmit}>
-        <button onClick={handleToggleLogin}>{loginOrSignup? "Login" : "Signup"}</button>
-        <label htmlFor="">Email</label>
-        <input 
-        type="text" 
-        name="email" 
-        id="email" 
-        value={formData.email} 
-        onChange={handleChange}
-        />
+        <h2>Please Login or Sign-up to use this website</h2>
+        <button onClick={handleToggleLogin}>Toggle: {loginOrSignup? "Login" : "Signup"}</button>
 
-        {loginOrSignup? <></> : <label htmlFor="">Username</label>}
-        {loginOrSignup? <></> : <input type="text" name="username" id="username" 
-        value={formData.username} 
-        onChange={handleChange}/>}
+        <div>
+          <label htmlFor="">Email</label>
+          <input 
+          type="text" 
+          name="email" 
+          id="email" 
+          value={formData.email} 
+          onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="">Passowrd</label>
-        <input type="text" name="password" id="password" 
-        value={formData.password} 
-        onChange={handleChange}/>
-
+        <div>
+          {loginOrSignup? <></> : <label htmlFor="">Username</label>}
+          {loginOrSignup? <></> : <input type="text" name="username" id="username" 
+          value={formData.username} 
+          onChange={handleChange}/>}
+        </div>
+        
+        <div>
+          <label htmlFor="">Passowrd</label>
+          <input type="password" name="password" id="password" 
+          value={formData.password} 
+          onChange={handleChange}/>
+        </div>
+        
         <button>{loginOrSignup? "Login" : "Signup"}</button>
       </form>
 

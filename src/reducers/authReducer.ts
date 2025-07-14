@@ -1,6 +1,6 @@
 import type { AuthAction, AuthState } from "../types/type";
 
-export const authReducer = (state: AuthState, action:AuthAction) => {
+export const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
         case "LOGIN":
             return { ...state, user: action.payload };

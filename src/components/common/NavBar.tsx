@@ -1,23 +1,30 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useLogOut } from '../../hooks/useLogOut';
 import '../../styles/navbar.css'
 
 const NavBar = () => {
-  const {user} = useAuthContext()
+  const { user } = useAuthContext();
+  const { logout } = useLogOut();
+  const navigate = useNavigate();
 
-  const testClick = () => {
-    console.log(user)
+  const handleClick = async () => {
+    if (user) {
+      await logout();
+      navigate('/login')
+    }
   }
+
   return (
     <nav className='nav-bar'>
-        <div>Hello</div>
+        <div>Todo - List</div>
 
         <ul>
-            <li onClick={testClick}>Menu 1</li>
+            <li>Welcome</li>
             <li>{user?.email}</li>
-            <li>Menu 3</li>
         </ul>
 
-        <button>Login / Signup</button>
+        <button onClick={handleClick}>{user? "Log-out" : " Login / Sign-up"}</button>
     </nav>
   )
 }

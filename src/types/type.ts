@@ -13,6 +13,7 @@ export interface ToDoListFormProps {
 export type Action = 
     | { type: "SET_TODOS"; payload: ToDo[] }
     | { type: "ADD_TODO"; payload: ToDo }
+    | { type: "UPDATE_TODO"; payload: ToDo }
     | { type: "DELETE_TODO"; payload: string }
     | { type: "SET_LOADING"; payload: boolean }
 
@@ -31,6 +32,11 @@ export interface User {
   _id: string | null;
   email: string | null;
   username: string | null;
+}
+
+export interface UserResponse {
+  token: string;
+  user: User;
 }
 
 export interface AuthState {
