@@ -58,7 +58,7 @@ const ToDoListDetail = ({ data }: ToDoListDetailProps) => {
     <div>
 
       <div onClick={handleShowComponent}>
-        <div>{data.todo}</div>
+        <p>{data.todo}</p>
         <div>{new Date(data.date).toLocaleDateString()}</div>
 
         <div>

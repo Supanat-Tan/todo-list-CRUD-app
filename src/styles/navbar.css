@@ -52,6 +52,7 @@
     color: black;
 }
 
+/* Top right button */
 .nav-bar > button {
     height: 100%;
     width: 200px;
@@ -62,4 +63,22 @@
     font-size: 1.2rem;
     color: black;
     cursor: pointer;
+
+    transition: background-color 0.3s ease;
+}
+
+.nav-bar > button:hover {
+    background-color: var(--hover-button);
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+    /* Logo */
+    .nav-bar > div {
+        display: none;
+    }
+    /* Welcome text and user text */
+    .nav-bar > ul > li {
+        font-size: 1.2rem;
+    }
 }

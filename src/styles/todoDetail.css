@@ -46,9 +46,15 @@
     align-items: center;
 }
 
+.detail-container > div > div > p {
+    flex: 1;
+
+    text-align: center;
+}
+
 .detail-container > div:not(.sorter) > div > div > button {
     width: 30px;
-    height: 100%;
+    height: 30px;
 
     border: none;
     background-color: var(--accent);
@@ -57,6 +63,12 @@
     font-size: 1.2rem;
 
     cursor: pointer;
+
+    transition: background-color 0.3s ease;
+}
+
+.detail-container > div:not(.sorter) > div > div > button:hover {
+    background-color: var(--hover-button);
 }
 
 /* Hover Effect */
@@ -120,4 +132,36 @@
 
     color: var(--background);
     font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Update form */
+    .update-form > div > input {
+        width: 100px;
+    }
+    .update-form > div > label {
+        font-size: 1rem;
+    }
+
+    /* For text align in detail */
+    .detail-container > div > div > p {
+    flex: 1;
+
+    text-align: start;
+    }
+}
+
+@media (max-width: 450px) {
+    /* Detail part */
+    .detail-container > div > div {
+        font-size: 1rem;
+    }
+    /* Update form */
+    .update-form > div > input {
+        width: 70px;
+    }
+    .update-form > div > label {
+        display: none;
+    }
 }

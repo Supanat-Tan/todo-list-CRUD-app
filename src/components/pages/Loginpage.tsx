@@ -60,7 +60,7 @@ const Loginpage = () => {
 
       <form className="form-container" onSubmit={handleSubmit}>
         <h2>Please Login or Sign-up to use this website</h2>
-        <button onClick={handleToggleLogin}>Toggle: {loginOrSignup? "Login" : "Signup"}</button>
+        <button type="button" onClick={handleToggleLogin}>Toggle: {loginOrSignup? "Login" : "Signup"}</button>
 
         <div>
           <label htmlFor="">Email</label>

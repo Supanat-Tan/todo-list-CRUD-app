@@ -21,7 +21,7 @@ const NavBar = () => {
 
         <ul>
             <li>Welcome</li>
-            <li>{user?.email}</li>
+            <li>{user?.username}</li>
         </ul>
 
         <button onClick={handleClick}>{user? "Log-out" : " Login / Sign-up"}</button>

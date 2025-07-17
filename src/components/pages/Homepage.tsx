@@ -9,7 +9,9 @@ import "../../styles/sorter.css"
 
 const Homepage = () => {
   const todoFromLoader = useLoaderData();
+
   const { toDos, dispatch } = useToDoContext();
+
   const [sortState, setSortState] = useState<{type: string | null; direction: "ascent" | "descent"}>({
     type: null,
     direction: "ascent"
