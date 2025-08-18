@@ -1,3 +1,4 @@
+import { apiCall } from "../services/todoService";
 import { useAuthContext } from "./useAuthContext"
 import { useToDoContext } from "./useTodoContext";
 
@@ -7,9 +8,14 @@ export const useLogOut = () => {
     const { dispatch: todoDispatch } = useToDoContext();
     
     const logout = async () => {
+
+
+        //Old localStorage setup
+        /*
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-
+        */
+        await apiCall('logout');
         dispatch({ type: "LOGOUT"});
         todoDispatch({ type: "SET_TODOS", payload: []})
     }

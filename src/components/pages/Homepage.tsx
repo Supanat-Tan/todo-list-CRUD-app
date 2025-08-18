@@ -6,11 +6,14 @@ import { useLoaderData } from "react-router-dom";
 import "../../styles/homepage.css"
 import "../../styles/todoDetail.css"
 import "../../styles/sorter.css"
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Homepage = () => {
   const todoFromLoader = useLoaderData();
 
   const { toDos, dispatch } = useToDoContext();
+  const { dispatch: authDispatch } = useAuthContext();
+  
 
   const [sortState, setSortState] = useState<{type: string | null; direction: "ascent" | "descent"}>({
     type: null,
@@ -42,15 +45,29 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    if ('error' in todoFromLoader) {
-      setError(todoFromLoader.error);
+    const fetchUser = async () => {
+      const response = await fetch('/api/auth/me');
+      const { _id } = await response.json()
+
+      const userResponse = await fetch(`/api/auth/${_id}`)
+      const user = await userResponse.json()
+      if (user) {
+        authDispatch({ type: "LOGIN", payload: user })
+      }
+      
+    }
+
+    fetchUser();
+
+    if (!todoFromLoader) {
+      setError("Failed Loading todo list");
       return;
     }
 
     if (todoFromLoader) {
       dispatch({ type: "SET_TODOS", payload: todoFromLoader});
     }
-  }, [dispatch, todoFromLoader])
+  }, [authDispatch, dispatch, todoFromLoader])
   
   return (
     <div className="main-container">

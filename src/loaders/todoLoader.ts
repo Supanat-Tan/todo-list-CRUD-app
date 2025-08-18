@@ -2,29 +2,30 @@ import { redirect, type LoaderFunction } from "react-router-dom";
 import { apiCall } from "../services/todoService"
 
 export const todoLoader: LoaderFunction = async () => {
-   const userString = localStorage.getItem("user");
-
-   if (!userString) {
-      throw redirect("/login");
-   }
-
-   const user = JSON.parse(userString);
-
+   //Cookies setup
    try {
-      const result = await apiCall(`get-all-todo`, user._id);
+      const response = await fetch('/api/auth/me', {
+         credentials: "include"
+      });
 
-      if ('error' in result) {
+      if (!response.ok) {
          throw redirect("/login");
       }
 
-      return result
-   }
-   catch(err) {
-      if (err instanceof Response) {
-         throw err
+      const userCookie = await response.json();
+      
+      const todoResponse = await apiCall('get-all-todo', userCookie._id);
+
+      if (!todoResponse) {
+         console.log("Todo fetch failed");
+         return { message: "Error fetching todo"}
       }
       
-      console.error(err)
-      return { error: "Failed to Load todo list. Server maybe currently down"}
+      return todoResponse;
+
+   }
+   catch(err) {
+      console.log(err)
+      throw redirect("/login");
    }
 };

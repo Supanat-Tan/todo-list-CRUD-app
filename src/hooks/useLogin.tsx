@@ -5,9 +5,12 @@ export const useLogin = () => {
     const { dispatch } = useAuthContext()
 
     const login = async (response: UserResponse) => {
+
+        //Old localStorage setup
+        /*
         localStorage.setItem("token", response.token)
         localStorage.setItem("user", JSON.stringify(response.user))
-
+        */
         dispatch({ type: "LOGIN", payload: response.user});
     }
 

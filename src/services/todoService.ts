@@ -1,4 +1,4 @@
-export const apiCall = async (type: string, payload?: string | object, addtion?: string) => {
+export const apiCall = async (type: string, payload?: string | object, addition?: string) => {
     let response
 
     const token = localStorage.getItem("token");
@@ -24,7 +24,7 @@ export const apiCall = async (type: string, payload?: string | object, addtion?:
             break;
 
         case "update-todo":
-            response = await fetch(`api/todo/${addtion}`, {
+            response = await fetch(`api/todo/${addition}`, {
                 method: "PATCH",
                 body: JSON.stringify(payload),
                 headers: {
@@ -50,8 +50,16 @@ export const apiCall = async (type: string, payload?: string | object, addtion?:
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-Type": "application/json",
-                }
+                },
+                credentials: "include"
             });
+            break;
+
+        case "logout":
+            response = await fetch('/api/auth/logout', {
+                method: "POST",
+                credentials: "include"
+            })
             break;
         
         case "signup":
