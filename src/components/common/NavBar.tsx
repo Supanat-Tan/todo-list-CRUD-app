@@ -9,8 +9,13 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
+
     if (user) {
       await logout();
+      return
+    } 
+
+    else {
       navigate('/login')
     }
   }

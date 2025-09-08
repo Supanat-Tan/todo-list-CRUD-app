@@ -11,14 +11,20 @@ const RootLayout = () => {
   //Set User
   const userFromLoader = useLoaderData();
   const { dispatch } = useAuthContext();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: "SET_USER", payload: userFromLoader})
+    if (userFromLoader) {
+      dispatch({ type: "SET_USER", payload: userFromLoader})
+      setIsReady(true)
+    }
   }, [dispatch, userFromLoader])
 
   const toggleForm = () =>{
     setShowForm(prev => !prev)
   }
+
+  if (!isReady) return null
 
   return (
     <>
