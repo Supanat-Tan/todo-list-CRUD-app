@@ -75,6 +75,12 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 },
             });
             break;
+
+        case "check-user":
+            response = await fetch(`https://supanat-main-backend.onrender.com/api/auth/me`, {
+                credentials: "include"
+            });
+            break;
         
         default:
             throw new Error(`Unknown API call type: ${type}`);

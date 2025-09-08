@@ -46,6 +46,7 @@ export interface AuthState {
 export type AuthAction =
   | { type: "LOGIN"; payload: User }
   | { type: "LOGOUT";}
+  | { type: "SET_USER"; payload: User}
 
 export interface AuthContextType {
   user: User | null;
