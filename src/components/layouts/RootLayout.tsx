@@ -14,10 +14,10 @@ const RootLayout = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (userFromLoader) {
-      dispatch({ type: "SET_USER", payload: userFromLoader})
-      setIsReady(true)
-    }
+    dispatch({ type: "SET_USER", payload: userFromLoader ?? null })
+
+    setIsReady(true)
+
   }, [dispatch, userFromLoader])
 
   const toggleForm = () =>{
