@@ -1,14 +1,9 @@
 export const apiCall = async (type: string, payload?: string | object, addition?: string) => {
     let response
 
-    const token = localStorage.getItem("token");
-
     switch (type) {
         case "get-all-todo":
             response = await fetch(`https://supanat-main-backend.onrender.com/api/todo/${payload}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
                 credentials: "include"
             });
             break;
@@ -19,7 +14,6 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 credentials: "include"
             })
@@ -31,7 +25,6 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 credentials: "include"
             })
@@ -42,7 +35,6 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 credentials: "include"
             })
