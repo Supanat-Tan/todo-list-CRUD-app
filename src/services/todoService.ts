@@ -8,7 +8,8 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             response = await fetch(`https://supanat-main-backend.onrender.com/api/todo/${payload}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
-                }
+                },
+                credentials: "include"
             });
             break;
 
@@ -19,7 +20,8 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
-                }
+                },
+                credentials: "include"
             })
             break;
 
@@ -30,7 +32,8 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
-                }
+                },
+                credentials: "include"
             })
             break;
 
@@ -41,6 +44,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
+                credentials: "include"
             })
             break;
 
@@ -68,7 +72,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-Type": "application/json",
-                }
+                },
             });
             break;
         

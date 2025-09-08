@@ -19,6 +19,7 @@ const Homepage = () => {
     type: null,
     direction: "ascent"
   })
+  
   const [error, setError] = useState("");
 
   const sortedTodos = [...toDos];

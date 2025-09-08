@@ -12,9 +12,13 @@ export const todoLoader: LoaderFunction = async () => {
          throw redirect("/login");
       }
 
-      const userCookie = await response.json();
+      const user = await response.json();
+
+      if (!user || !user._id) {
+         throw redirect("/login");
+      }
       
-      const todoResponse = await apiCall('get-all-todo', userCookie._id);
+      const todoResponse = await apiCall('get-all-todo', user._id);
 
       if (!todoResponse) {
          console.log("Todo fetch failed");
@@ -25,7 +29,7 @@ export const todoLoader: LoaderFunction = async () => {
 
    }
    catch(err) {
-      console.log(err)
+      console.log("Error in todoLoader: ", err)
       throw redirect("/login");
    }
 };
