@@ -5,7 +5,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
 
     switch (type) {
         case "get-all-todo":
-            response = await fetch(`/api/todo/${payload}`, {
+            response = await fetch(`https://supanat-main-backend.onrender.com/api/todo/${payload}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -13,7 +13,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             break;
 
         case "create-todo":
-            response = await fetch('/api/todo', {
+            response = await fetch('https://supanat-main-backend.onrender.com/api/todo', {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
@@ -24,7 +24,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             break;
 
         case "update-todo":
-            response = await fetch(`api/todo/${addition}`, {
+            response = await fetch(`https://supanat-main-backend.onrender.comapi/todo/${addition}`, {
                 method: "PATCH",
                 body: JSON.stringify(payload),
                 headers: {
@@ -35,7 +35,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             break;
 
         case "delete-todo":
-            response = await fetch(`/api/todo/${payload}`, {
+            response = await fetch(`https://supanat-main-backend.onrender.com/api/todo/${payload}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             break;
 
         case "login":
-            response = await fetch('/api/auth/login', {
+            response = await fetch('https://supanat-main-backend.onrender.com/api/auth/login', {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
@@ -56,14 +56,14 @@ export const apiCall = async (type: string, payload?: string | object, addition?
             break;
 
         case "logout":
-            response = await fetch('/api/auth/logout', {
+            response = await fetch('https://supanat-main-backend.onrender.com/api/auth/logout', {
                 method: "POST",
                 credentials: "include"
             })
             break;
         
         case "signup":
-            response = await fetch('/api/auth/signup', {
+            response = await fetch('https://supanat-main-backend.onrender.com/api/auth/signup', {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {

@@ -4,7 +4,7 @@ import { apiCall } from "../services/todoService"
 export const todoLoader: LoaderFunction = async () => {
    //Cookies setup
    try {
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch('https://supanat-main-backend.onrender.com/api/auth/me', {
          credentials: "include"
       });
 

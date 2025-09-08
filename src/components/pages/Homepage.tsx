@@ -46,10 +46,10 @@ const Homepage = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch('/api/auth/me');
+      const response = await fetch('https://supanat-main-backend.onrender.com/api/auth/me');
       const { _id } = await response.json()
 
-      const userResponse = await fetch(`/api/auth/${_id}`)
+      const userResponse = await fetch(`https://supanat-main-backend.onrender.com/api/auth/${_id}`)
       const user = await userResponse.json()
       if (user) {
         authDispatch({ type: "LOGIN", payload: user })
