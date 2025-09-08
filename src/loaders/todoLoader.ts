@@ -14,6 +14,8 @@ export const todoLoader: LoaderFunction = async () => {
 
       const user = await response.json();
 
+      console.log("User from todoLoader: ", user)
+
       if (!user || !user._id) {
          throw redirect("/login");
       }
