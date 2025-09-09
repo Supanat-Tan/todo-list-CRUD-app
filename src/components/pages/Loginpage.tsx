@@ -40,7 +40,7 @@ const Loginpage = () => {
       });
 
         if (response.ok) {
-          await login(response);
+          await login();
           navigate('/');
         }
 
