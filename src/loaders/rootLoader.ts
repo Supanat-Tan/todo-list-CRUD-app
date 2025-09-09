@@ -5,7 +5,7 @@ export const rootLoader: LoaderFunction = async () => {
     const response = await apiCall('check-user')
 
     if (!response.ok) {
-        throw redirect('/')
+        throw redirect('/login')
     }
 
     const user = await response.json()
