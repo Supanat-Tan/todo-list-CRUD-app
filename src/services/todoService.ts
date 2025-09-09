@@ -77,14 +77,5 @@ export const apiCall = async (type: string, payload?: unknown, addition?: string
         default:
             throw new Error(`Unknown API call type: ${type}`);
     }
-    if (response.status === 401 || response.status === 400) {
-        return { error: "Please Login or Signup to use"}
-    }
-
-    if (!response.ok) {
-        const error = await response?.json();
-        throw new Error(error.error || error.message || "Unknown error")
-    }
-
-    return await response.json();
+    return response;
 }

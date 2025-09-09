@@ -48,7 +48,7 @@ const Loginpage = () => {
       catch(err) {
       console.log(err)
       }
-    } 
+    }
 
     else {
       const response = await apiCall('signup', formData);

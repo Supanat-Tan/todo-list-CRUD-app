@@ -48,11 +48,11 @@ const ToDoListForm = ({ isVisible }: ToDoListFormProps) => {
     }
 
     console.log(formData)
+    const response = await apiCall('create-todo', formData);
+    const todoJson = await response.json()
   
-    const json = await apiCall('create-todo', formData);
-  
-    if (json) {
-      dispatch({ type: "ADD_TODO", payload: json})
+    if (todoJson) {
+      dispatch({ type: "ADD_TODO", payload: todoJson})
       handleNotice();
     }
   }
