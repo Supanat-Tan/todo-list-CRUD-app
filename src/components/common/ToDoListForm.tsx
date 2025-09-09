@@ -43,8 +43,6 @@ const ToDoListForm = ({ isVisible }: ToDoListFormProps) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const user = localStorage.getItem("user")
-
     if (!user) {
       console.error("Not currently login")
     }

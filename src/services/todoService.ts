@@ -1,4 +1,4 @@
-export const apiCall = async (type: string, payload?: string | object, addition?: string) => {
+export const apiCall = async (type: string, payload?: unknown, addition?: string) => {
     let response
 
     switch (type) {

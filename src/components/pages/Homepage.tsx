@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react"
 import ToDoListDetail from "../common/ToDoListDetail"
 import { useToDoContext } from "../../hooks/useTodoContext"
-import { useLoaderData } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 import "../../styles/homepage.css"
 import "../../styles/todoDetail.css"
 import "../../styles/sorter.css"
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { apiCall } from "../../services/todoService";
+
 
 const Homepage = () => {
-  const todoFromLoader = useLoaderData();
-
   const { toDos, dispatch } = useToDoContext();
-  const { dispatch: authDispatch } = useAuthContext();
+  const { user, dispatch: authDispatch } = useAuthContext();
   
 
   const [sortState, setSortState] = useState<{type: string | null; direction: "ascent" | "descent"}>({
@@ -47,28 +46,23 @@ const Homepage = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch('https://supanat-main-backend.onrender.com/api/auth/me');
-      const { _id } = await response.json()
+      try {
 
-      const userResponse = await fetch(`https://supanat-main-backend.onrender.com/api/auth/${_id}`)
-      const user = await userResponse.json()
-      if (user) {
-        authDispatch({ type: "LOGIN", payload: user })
+        if (user) {
+          const fetchTodo = await apiCall("get-all-todo", user._id);
+          const todoJson = await fetchTodo.json();
+
+          dispatch({ type: "SET_TODOS", payload: todoJson})
+        }
       }
-      
+      catch(err) {
+        console.log("Error fetching todo", err)
+        setError("Error fetching todo")
+      }
     }
 
     fetchUser();
-
-    if (!todoFromLoader) {
-      setError("Failed Loading todo list");
-      return;
-    }
-
-    if (todoFromLoader) {
-      dispatch({ type: "SET_TODOS", payload: todoFromLoader});
-    }
-  }, [authDispatch, dispatch, todoFromLoader])
+  }, [authDispatch, dispatch, user])
   
   return (
     <div className="main-container">

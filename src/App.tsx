@@ -2,7 +2,6 @@ import RootLayout from './components/layouts/RootLayout'
 import Homepage from './components/pages/Homepage'
 import Loginpage from './components/pages/Loginpage'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-import { todoLoader } from './loaders/todoLoader';
 import { rootLoader } from './loaders/rootLoader';
 
 
@@ -12,7 +11,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     loader: rootLoader,
     children: [
-      { index: true, element: <Homepage />, loader: todoLoader, },
+      { index: true, element: <Homepage /> },
     ],
   },
   {

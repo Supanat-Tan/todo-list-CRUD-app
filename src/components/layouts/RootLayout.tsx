@@ -14,7 +14,7 @@ const RootLayout = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: "SET_USER", payload: userFromLoader ?? null })
+    dispatch({ type: "SET_USER", payload: userFromLoader })
 
     setIsReady(true)
 
