@@ -39,7 +39,7 @@ const Loginpage = () => {
         password: formData.password
       });
 
-        if (response) {
+        if (response.ok) {
           await login(response);
           navigate('/');
         }

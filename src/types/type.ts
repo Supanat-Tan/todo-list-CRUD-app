@@ -34,11 +34,6 @@ export interface User {
   username: string | null;
 }
 
-export interface UserResponse {
-  token: string;
-  user: User;
-}
-
 export interface AuthState {
   user: User | null;
 }

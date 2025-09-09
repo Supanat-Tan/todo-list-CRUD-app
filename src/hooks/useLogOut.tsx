@@ -8,15 +8,10 @@ export const useLogOut = () => {
     const { dispatch: todoDispatch } = useToDoContext();
     
     const logout = async () => {
-
-
-        //Old localStorage setup
-        /*
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        */
         await apiCall('logout');
+
         dispatch({ type: "LOGOUT"});
+        
         todoDispatch({ type: "SET_TODOS", payload: []})
     }
     return { logout }
