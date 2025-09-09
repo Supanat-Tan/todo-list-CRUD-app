@@ -43,7 +43,9 @@ const Loginpage = () => {
           await login(response);
           navigate('/');
         }
-      } catch(err) {
+
+      } 
+      catch(err) {
       console.log(err)
       }
     } 
