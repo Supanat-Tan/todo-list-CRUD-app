@@ -12,6 +12,7 @@ const NavBar = () => {
 
     if (user) {
       await logout();
+      navigate('/login')
       return
     } 
 
